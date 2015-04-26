@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.sportslabs.amp</groupId>
+		<artifactId>spring-social-bootstrap-pom</artifactId>
+		<version>0-SNAPSHOT</version>
+		<relativePath>spring-social-bootstrap-pom</relativePath>
+	</parent>
+
+	<artifactId>mockbin-cli</artifactId>
+	
+	<dependencies>
+		<!-- SportsLabs -->
+		<dependency>
+			<groupId>com.sportslabs.amp</groupId>
+			<artifactId>spring-social-mockbin</artifactId>
+			<version>0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sportslabs.amp</groupId>
+			<artifactId>bootstrap-shell</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sportslabs.amp</groupId>
+			<artifactId>spring-social-bootstrap-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- ASCII -->
+		<dependency>
+			<groupId>com.bethecoder</groupId>
+			<artifactId>btc-ascii-table</artifactId>
+			<version>1.0</version>
+		</dependency>
+		
+		<!-- PrettyTime -->
+		<dependency>
+			<groupId>org.ocpsoft.prettytime</groupId>
+			<artifactId>prettytime</artifactId>
+			<version>3.2.7.Final</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>appassembler-maven-plugin</artifactId>
+				<version>1.10</version>
+				<configuration>
+					<programs>
+						<program>
+							<mainClass>org.springframework.social.mockbin.cli.MockbinCli</mainClass>
+							<id>mockbin-cli</id>
+						</program>
+					</programs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>
