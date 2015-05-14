@@ -52,7 +52,7 @@ public class MockbinCliConfig {
 	}
 	
 	/**
-	 * Naming convention corresponds to printer parameter value "json"
+	 * Naming convention corresponds to printer parameter value "table"
 	 * 
 	 * Uses "java-ascii-table" project to print the Access Log Entries within an ASCII table
 	 */

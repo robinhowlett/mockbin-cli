@@ -37,7 +37,8 @@ public class AlfHarEntryTableCliPrinterTypeConverter implements CliPrinterTypeCo
 				new ASCIITableHeader("Path", ALIGN_LEFT),
 				new ASCIITableHeader("Size (KB)"),
 				new ASCIITableHeader("Date", ALIGN_LEFT),
-				new ASCIITableHeader("IP", ALIGN_LEFT));
+				new ASCIITableHeader("IP", ALIGN_LEFT),
+				new ASCIITableHeader("Bin", ALIGN_LEFT));
 		
 		ASCIITableHeader[] headers = tableHeaders.toArray(new ASCIITableHeader[tableHeaders.size()]);
 		String[][] cells = null;
@@ -45,13 +46,17 @@ public class AlfHarEntryTableCliPrinterTypeConverter implements CliPrinterTypeCo
 		Integer rowNumber = 1;
 		List<String[]> rows = new ArrayList<String[]>();
 		for (AlfHarEntry entry : har.getLog().getEntries()) {
+			String clientIPAddress = entry.getClientIPAddress();
+			String _binId = entry.get_binId();
+			
 			List<String> row = asList(
 				rowNumber.toString(),
 				entry.getRequest().getMethod(),
 				entry.getRequest().getUrl().toString(),
 				entry.getRequest().getBodySize().toString(),
 				new PrettyTime().format(entry.getStartedDateTime().toDate()),
-				entry.getClientIPAddress()
+				(clientIPAddress != null ? clientIPAddress : ""),
+				(_binId != null ? _binId : "")
 			);
 			
 			rows.add(row.toArray(new String[row.size()]));
@@ -62,9 +67,7 @@ public class AlfHarEntryTableCliPrinterTypeConverter implements CliPrinterTypeCo
 			cells = rows.toArray(new String[rows.size()][]);
 		}
 		
-		return ASCIITable.getInstance().getTable(
-				headers, 
-				cells);
+		return ASCIITable.getInstance().getTable(headers, cells);
 	}
 
 }

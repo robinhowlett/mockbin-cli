@@ -5,8 +5,7 @@
 	<parent>
 		<groupId>com.sportslabs.amp</groupId>
 		<artifactId>spring-social-bootstrap-pom</artifactId>
-		<version>0-SNAPSHOT</version>
-		<relativePath>spring-social-bootstrap-pom</relativePath>
+		<version>5</version>
 	</parent>
 
 	<artifactId>mockbin-cli</artifactId>

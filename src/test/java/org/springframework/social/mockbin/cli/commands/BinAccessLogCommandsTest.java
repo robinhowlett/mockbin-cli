@@ -34,7 +34,7 @@ public class BinAccessLogCommandsTest {
 	
 	@BeforeClass
 	public static void startUp() throws InterruptedException {
-		bootstrap = new Bootstrap(MockbinCliTestConfig.class.getPackage().getName());
+		bootstrap = new Bootstrap(null, Bootstrap.CONTEXT_PATH, MockbinCliTestConfig.class.getPackage().getName());
 		
 		shell = bootstrap.getJLineShellComponent();
 	}
