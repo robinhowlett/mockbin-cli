@@ -62,7 +62,7 @@
 		<!-- ASCII -->
 		<dependency>
 			<groupId>com.bethecoder</groupId>
-			<artifactId>btc-ascii-table</artifactId>
+			<artifactId>java-ascii-table</artifactId>
 			<version>1.0</version>
 		</dependency>
 		
