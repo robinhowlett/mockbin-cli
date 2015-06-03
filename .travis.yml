@@ -1,0 +1,10 @@
+language: java
+branches:
+  only:
+  - master
+  - /^feature.*/
+before_install:
+- mvn versions:set -DnewVersion=$TRAVIS_BUILD_NUMBER
+after_script:
+- mvn versions:commit
+- mvn deploy
