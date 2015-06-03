@@ -27,5 +27,5 @@ and the following dependency:
     <dependency>
         <groupId>com.sportslabs.amp</groupId>
         <artifactId>mockbin-cli</artifactId>
-        <version>5</version>
+        <version>6</version>
     </dependency>
