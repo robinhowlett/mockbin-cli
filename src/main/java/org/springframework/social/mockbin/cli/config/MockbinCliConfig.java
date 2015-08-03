@@ -58,7 +58,7 @@ public class MockbinCliConfig {
 	 */
 	@Bean
 	@DependsOn("mockbin")
-	public AlfHarEntryTableCliPrinterTypeConverter tableOutputConverter() {
+	public AlfHarEntryTableCliPrinterTypeConverter table2OutputConverter() {
 		return new AlfHarEntryTableCliPrinterTypeConverter();
 	}
 	

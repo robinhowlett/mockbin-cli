@@ -7,7 +7,6 @@ import com.bethecoder.ascii_table.ASCIITable;
 import com.bethecoder.ascii_table.ASCIITableHeader;
 import com.sportslabs.amp.har.dto.alf.har.AlfHar;
 import com.sportslabs.amp.har.dto.alf.har.entries.AlfHarEntry;
-import org.ocpsoft.prettytime.PrettyTime;
 import org.springframework.expression.Expression;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.shell.converters.CliPrinterTypeConverter;
@@ -34,39 +33,29 @@ public class AlfHarEntryTableCliPrinterTypeConverter implements CliPrinterTypeCo
 
         List<ASCIITableHeader> tableHeaders = Arrays.asList(
                 new ASCIITableHeader("#"),
-                new ASCIITableHeader("Method", ALIGN_LEFT),
-                new ASCIITableHeader("Path", ALIGN_LEFT),
-                new ASCIITableHeader("Size (KB)"),
-                new ASCIITableHeader("Date", ALIGN_LEFT),
-                new ASCIITableHeader("IP", ALIGN_LEFT),
-                new ASCIITableHeader("Bin", ALIGN_LEFT));
+                new ASCIITableHeader("Method", ALIGN_LEFT));
 
         ASCIITableHeader[] headers = tableHeaders.toArray(new ASCIITableHeader[tableHeaders.size()]);
         String[][] cells = null;
 
         Integer rowNumber = 1;
         List<String[]> rows = new ArrayList<String[]>();
-        for (AlfHarEntry entry : har.getLog().getEntries()) {
-            SpelExpressionParser parser = new SpelExpressionParser();
-            Expression expression = parser.parseExpression("getRequest().getMethod()");
-            String method = (String) expression.getValue(entry);
+        //for (AlfHarEntry entry : har.getLog().getEntries()) {
+        SpelExpressionParser parser = new SpelExpressionParser();
+        Expression expression = parser.parseExpression("#root.log.entries.![{request.method,clientIPAddress}]");
+        List<List<String>> method = (List<List<String>>) expression.getValue(har);
 
-            String clientIPAddress = entry.getClientIPAddress();
-            String _binId = entry.get_binId();
+//            String clientIPAddress = entry.getClientIPAddress();
+//            String _binId = entry.get_binId();
 
-            List<String> row = asList(
-                    rowNumber.toString(),
-                    entry.getRequest().getMethod(),
-                    entry.getRequest().getUrl().toString(),
-                    entry.getRequest().getBodySize().toString(),
-                    new PrettyTime().format(entry.getStartedDateTime().toDate()),
-                    (clientIPAddress != null ? clientIPAddress : ""),
-                    (_binId != null ? _binId : "")
-            );
+        List<String> row = asList(
+                rowNumber.toString(),
+                method.toString()
+        );
 
-            rows.add(row.toArray(new String[row.size()]));
-            rowNumber++;
-        }
+        rows.add(row.toArray(new String[row.size()]));
+        rowNumber++;
+        //}
 
         if (!rows.isEmpty()) {
             cells = rows.toArray(new String[rows.size()][]);
@@ -75,4 +64,8 @@ public class AlfHarEntryTableCliPrinterTypeConverter implements CliPrinterTypeCo
         return ASCIITable.getInstance().getTable(headers, cells);
     }
 
+    @Override
+    public void setParameters(String parameters) {
+
+    }
 }

@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.sportslabs.amp</groupId>
 		<artifactId>spring-social-bootstrap-pom</artifactId>
-		<version>13</version>
+		<version>tables</version>
         <relativePath />
 	</parent>
 
@@ -58,14 +58,7 @@
 			<artifactId>spring-social-bootstrap-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-		<!-- ASCII -->
-		<dependency>
-			<groupId>com.bethecoder</groupId>
-			<artifactId>java-ascii-table</artifactId>
-			<version>1.0</version>
-		</dependency>
-		
+
 		<!-- PrettyTime -->
 		<dependency>
 			<groupId>org.ocpsoft.prettytime</groupId>

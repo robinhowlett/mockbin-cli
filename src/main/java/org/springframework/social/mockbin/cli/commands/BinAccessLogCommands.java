@@ -67,7 +67,7 @@ public class BinAccessLogCommands extends AbstractStepExecutionProcessor impleme
 	@CliStepIndicator
 	public AlfHar accessLog(
 			@CliOption(key="id", mandatory=true) String binId,
-			@CliPrinter(defaultValue="table") CliPrinterTypeConverter<AlfHar> printer) {
+			@CliPrinter(defaultValue="table2") CliPrinterTypeConverter<AlfHar> printer) {
 		return mockbin.binOperations().accessLog(binId);
 	}
 	
